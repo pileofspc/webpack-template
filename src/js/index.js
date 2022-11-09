@@ -1,4 +1,5 @@
 import '../assets/css/main.css'
+import '../assets/scss/learn.sass'
 
 console.log(()=>{
     return 2+2;

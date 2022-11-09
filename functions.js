@@ -19,7 +19,15 @@ function getFilesOfExt(filepath, ...ext) {
     });
 }
 
+function getCssPlugin(exp) {
+    for (let item of exp.plugins) {
+        if (item.constructor.pluginName === 'mini-css-extract-plugin') {
+            return item
+        }
+    }
+}
 
 exports = module.exports = {
     getFilesOfExt,
+    getCssPlugin,
 }

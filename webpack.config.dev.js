@@ -1,7 +1,7 @@
 const base =  require('./webpack.config.base.js');
 const {merge} = require('webpack-merge');
 
-let dev = {
+let newOptions = {
     mode: 'development',
     devtool: 'source-map',
     devServer: {
@@ -11,7 +11,7 @@ let dev = {
         port: 3000,
         open: true,
         compress: true,
-        hot: true,
+        hot: true
         // historyApiFallback: true,
     },
     module: {
@@ -28,4 +28,10 @@ let dev = {
     }
 }
 
-exports = module.exports = merge(base, dev);
+
+// exports = module.exports = new Promise((resolve, reject)=>{
+//     let result = merge(base, dev);
+//     resolve(result);
+// });
+
+exports = module.exports = merge(base, newOptions);

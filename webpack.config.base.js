@@ -63,13 +63,13 @@ module.exports = exports = {
     entry: ENTRIES,
     output: {
         path: PATHS.dist,
-        filename: `${PATHS.distJs}/[name].[contenthash].js`,
+        filename: `${PATHS.distJs}/[name].js`,
         clean: true
     },
     plugins: [    
         ...htmlPluginPages,
         new MiniCssExtractPlugin({
-            filename: `${PATHS.distCss}/[name].[contenthash].css`,
+            filename: `${PATHS.distCss}/[name].css`,
         }),
     ]
 };

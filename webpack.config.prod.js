@@ -1,7 +1,9 @@
 const base =  require('./webpack.config.base.js');
 const {merge} = require('webpack-merge');
 
-let prod = {
+const functions = require('./functions.js');
+
+let newOptions = {
     mode: 'production',
     module: {
         rules: [
@@ -25,7 +27,21 @@ let prod = {
                 ],
             },
         ]
-    }
+    },
+    output: {
+        filename: `${base.externals.paths.distJs}/[name].[contenthash].js`,
+    },
 }
 
-exports = module.exports = merge(base, prod);
+// exports = module.exports = new Promise((resolve, reject)=>{
+//     resolve(merge(base, prod));
+// }).then((result)=>{
+//     console.log(
+//         result
+//     );
+// });
+
+exports = module.exports = merge(base, newOptions);
+
+let css = functions.getCssPlugin(exports);
+css.options.filename = css.options.filename.replace('[name]', '[name].[contenthash]');
