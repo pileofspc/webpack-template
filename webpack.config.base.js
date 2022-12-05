@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 // Import custom stuff
-const functions = require('./functions.js');
+const functions = require('./user_scripts/functions.js');
 
 const PATHS = {
     src: path.resolve(__dirname, './src'),
@@ -65,6 +65,17 @@ module.exports = exports = {
         path: PATHS.dist,
         filename: `${PATHS.distJs}/[name].js`,
         clean: true
+    },
+    module: {
+        rules: [
+            {
+                test: /\.(png||jpg||jpeg||gif||svg)$/,
+                type: 'asset/resource',
+                generator: {
+                    filename: `${PATHS.distImg}/[name][ext]`
+                }
+            }
+        ]
     },
     plugins: [    
         ...htmlPluginPages,

@@ -23,6 +23,7 @@ let newOptions = {
                     require("mini-css-extract-plugin").loader,
                     'css-loader',
                     'postcss-loader',
+                    // 'resolve-url-loader',
                     'sass-loader'
                 ],
             },
@@ -32,14 +33,6 @@ let newOptions = {
         filename: `${base.externals.paths.distJs}/[name].[contenthash].js`,
     },
 }
-
-// exports = module.exports = new Promise((resolve, reject)=>{
-//     resolve(merge(base, prod));
-// }).then((result)=>{
-//     console.log(
-//         result
-//     );
-// });
 
 exports = module.exports = merge(base, newOptions);
 

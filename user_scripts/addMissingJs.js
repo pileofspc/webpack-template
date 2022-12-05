@@ -1,6 +1,6 @@
 const path = require('path');
 const fs = require('fs');
-const config = require('./webpack.config.js');
+const config = require('../webpack.config.base.js');
 
 
 const PAGES = config.externals.pages;

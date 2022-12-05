@@ -7,12 +7,13 @@ let newOptions = {
     devServer: {
         static: {
             directory: base.externals.paths.dist,
+            // publicPath: '/',
         },
         port: 3000,
-        open: true,
+        // open: true,
+        // hot: true,
         compress: true,
-        hot: true
-        // historyApiFallback: true,
+        watchFiles: ['src/'],
     },
     module: {
         rules: [
@@ -20,18 +21,18 @@ let newOptions = {
                 test: /\.(sc|sa|c)ss$/i,
                 use: [
                     require("mini-css-extract-plugin").loader,
-                    'css-loader',
-                    'sass-loader'
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            // url: false,
+                        }
+                    },
+                    // 'resolve-url-loader',
+                    'sass-loader',
                 ],
             },
         ]
     }
 }
-
-
-// exports = module.exports = new Promise((resolve, reject)=>{
-//     let result = merge(base, dev);
-//     resolve(result);
-// });
 
 exports = module.exports = merge(base, newOptions);
