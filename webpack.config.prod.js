@@ -1,7 +1,7 @@
 const base =  require('./webpack.config.base.js');
 const {merge} = require('webpack-merge');
 
-const functions = require('./functions.js');
+const functions = require('./user_scripts/functions.js');
 
 let newOptions = {
     mode: 'production',
@@ -21,7 +21,27 @@ let newOptions = {
                 test: /\.(sc|sa|c)ss$/i,
                 use: [
                     require("mini-css-extract-plugin").loader,
-                    'css-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            url: false,
+                        }
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            postcssOptions: {
+                                plugins: [
+                                    require('autoprefixer'),
+                                    require('mqpacker'),
+                                    require('cssnano')({
+                                        preset: [require('cssnano-preset-default')],
+                                    }),
+                                ],
+                            },
+                            
+                        }
+                    },
                     'postcss-loader',
                     // 'resolve-url-loader',
                     'sass-loader'
