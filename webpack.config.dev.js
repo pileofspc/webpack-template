@@ -1,19 +1,21 @@
-const base =  require('./webpack.config.base.js');
-const {merge} = require('webpack-merge');
+const base = require('./webpack.config.base.js');
+const { merge } = require('webpack-merge');
 
 let newOptions = {
     mode: 'development',
     devtool: 'source-map',
     devServer: {
         static: {
-            directory: base.externals.paths.dist,
+            directory: global.PATHS.dist,
             // publicPath: '/',
         },
         port: 3000,
-        // open: true,
-        // hot: true,
+        hot: true,
         compress: true,
-        watchFiles: ['src/'],
+        // watchFiles: ['src/'],
+    },
+    output: {
+        clean: false
     },
     module: {
         rules: [
@@ -24,7 +26,7 @@ let newOptions = {
                     {
                         loader: 'css-loader',
                         options: {
-                            url: false,
+                            url: true,
                         }
                     },
                     // {
@@ -43,7 +45,7 @@ let newOptions = {
                 ],
             },
         ]
-    }
+    },
 }
 
 exports = module.exports = merge(base, newOptions);
