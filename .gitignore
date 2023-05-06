@@ -4,5 +4,4 @@ backup/
 .env
 .vscode
 .idea
-.gitkeep
 dependency-graph.html
