@@ -63,10 +63,13 @@ function resolveAliases(pathString, webpackAliases) {
     return resolved;
 };
 
+const PATH = path.resolve(__dirname);
+
 exports = module.exports = {
     getFilesOfExt,
     getFolders,
     getCssPlugin,
     absPathToJsconfigArray,
-    resolveAliases
+    resolveAliases,
+    PATH
 };

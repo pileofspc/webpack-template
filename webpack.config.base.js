@@ -9,7 +9,7 @@ const helpers = require('./webpack-helpers/webpack-helpers');
 
 const PATHS = {
     root: path.resolve(__dirname),
-    // helpers: path.resolve(__dirname, 'webpack-helpers', 'webpack-helpers.js'),
+    helpers: helpers.PATH,
     jsconfig: path.resolve(__dirname, 'jsconfig.json'),
     src: path.resolve(__dirname, 'src'),
     dist: path.resolve(__dirname, 'dist'),
@@ -33,7 +33,6 @@ const ENTRIES = {};
 
 // Array of names of *.html files:
 let PAGES = helpers.getFolders(PATHS.pages);
-// let PAGES = helpers.getFilesOfExt(PATHS.pages, '.html');
 
 // Array of HtmlWebpackPlugin entries for PAGES:
 let htmlPluginPages = PAGES.map(
@@ -57,6 +56,8 @@ PAGES.forEach((page) => {
 module.exports = exports = {
     resolve: {
         alias: {
+            "@": PATHS.root,
+            "@root": PATHS.root,
             "@modules": PATHS.modules,
             "@components": PATHS.components,
             "@styles": PATHS.styles,
