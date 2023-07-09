@@ -1,0 +1,137 @@
+@use "reset";
+@use "fonts";
+
+:root {
+    --container-maxw: 1200px;
+    --container-minw: 690px;
+    --container-pl: 8px;
+
+    --wrapper-pt: 8px;
+    --mt-big: 24px;
+    --mt-small: 16px;
+
+    --c-primary: #2c2738;
+    --c-secondary: #756f86;
+    --c-muted: #7c9cbf;
+    --c-bright: #ffffff;
+    --c-shade: #dbe2ea;
+    --c-tint: #ebf4f8;
+    --c-accent: #0880ae;
+    --c-warning: #f2ac57;
+    --c-success: #14a38b;
+    --c-error: #ff7171;
+    --c-graph: rgb(214, 207, 110);
+    --c-transparent: rgb(0, 0, 0, 0.8);
+
+    --main-background: var(--c-tint);
+    --header: var(--c-bright);
+    --main-button: var(--c-accent);
+    --main-button-text-color: var(--c-tint);
+    --alternate-button: var(--c-bright);
+    --alternate-button-border: var(--c-shade);
+    --alternate-button-text-color: var(--c-muted);
+    --card-background-color: var(--c-bright);
+
+    --block-shadow: 0 0 25px 20px rgba(44, 39, 56, 0.05);
+    --card-shadow: 0px 12px 16px rgba(44, 39, 56, 0.03),
+        0px 24px 24px rgba(44, 39, 56, 0.05);
+    --input-shadow: 0px 4px 8px 0px rgba(44, 39, 56, 0.04);
+
+    --ff-primary: "IBM Plex Sans", sans-serif;
+    --ff-secondary: "Montserrat", sans-serif;
+    --fw-regular: 400;
+    --fw-semi-bold: 500;
+    --fw-bold: 600;
+}
+
+body {
+    font-family: var(--ff-primary);
+    background-color: var(--main-background);
+    color: var(--c-primary);
+}
+
+._container {
+    max-width: var(--container-maxw);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--container-pl);
+    padding-right: var(--container-pl);
+}
+
+._flex-container {
+    display: flex;
+    flex-direction: column;
+    max-width: var(--container-maxw);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--container-pl);
+    padding-right: var(--container-pl);
+}
+
+.block {
+    border-radius: 12px;
+    background-color: var(--c-bright);
+    box-shadow: var(--block-shadow);
+}
+
+.form {
+    padding: 30px 30px;
+    border-radius: 24px;
+    background-color: var(--c-bright);
+    box-shadow: var(--block-shadow);
+}
+
+.card {
+    border-radius: 16px;
+    background-color: var(--c-bright);
+    box-shadow: var(--card-shadow);
+}
+
+.hollow-card {
+    outline: 1px solid var(--c-shade);
+    border-radius: 16px;
+    box-shadow: var(--input-shadow);
+}
+
+.input {
+    outline: 1px solid var(--c-shade);
+    border-radius: 6px;
+    padding: 8px 16px;
+    box-shadow: var(--input-shadow);
+}
+
+.form-title {
+    font-size: 34px;
+    font-weight: var(--fw-bold);
+}
+
+.block-title {
+    font-size: 28px;
+    font-weight: var(--fw-semi-bold);
+}
+
+.small-block-title {
+    font-size: 24px;
+    font-weight: var(--fw-semi-bold);
+}
+
+.large-block-title {
+    font-size: 42px;
+    font-weight: var(--fw-bold);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    padding: 0;
+}
+
+.button {
+    display: block;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+}

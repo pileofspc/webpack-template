@@ -1,0 +1,83 @@
+@use "sass:map";
+@use "sass:list";
+
+$screens: (
+    "min": (
+        "to": 400px,
+    ),
+    "xsm": (
+        "from": 401px,
+        "to": 620px,
+    ),
+    "sm": (
+        "from": 621px,
+        "to": 850px,
+    ),
+    "md": (
+        "from": 851px,
+        "to": 950px,
+    ),
+    "mdlg": (
+        "from": 951px,
+        "to": 1050px,
+    ),
+    "lg": (
+        "from": 1051px,
+        "to": 1200px,
+    ),
+    "max": (
+        "from": 1201px,
+    ),
+);
+
+@mixin respondSimple($name) {
+    $breakpoint: map.get($screens, $name);
+
+    @if not map.has-key($breakpoint, "to") {
+        @media only screen and (min-width: map.get($breakpoint, "from")) {
+            @content;
+        }
+    } @else {
+        @media only screen and (max-width: map.get($breakpoint, "to")) {
+            @content;
+        }
+    }
+}
+
+@mixin respond($fromName, $toName: null) {
+    @if not $toName {
+        $breakpoint: map.get($screens, $fromName);
+        @if $fromName == "max" {
+            @media only screen and (min-width: map.get($breakpoint, "from")) {
+                @content;
+            }
+        } @else if $fromName == "min" {
+            @media only screen and (max-width: map.get($breakpoint, "to")) {
+                @content;
+            }
+        } @else {
+            @media only screen and (min-width: map.get($breakpoint, "from")) and (max-width: map.get($breakpoint, "to")) {
+                @content;
+            }
+        }
+    } @else {
+        $firstBreakpoint: map.get($screens, $fromName);
+        $secondBreakpoint: map.get($screens, $toName);
+
+        @if $fromName == "min" and $toName == "max" {
+            @content;
+        } @else if $fromName == "min" {
+            @media only screen and (max-width: map.get($secondBreakpoint, "to")) {
+                @content;
+            }
+        } @else if $toName == "max" {
+            @media only screen and (min-width: map.get($firstBreakpoint, "from")) {
+                @content;
+            }
+        } @else {
+            @media only screen and (min-width: map.get($firstBreakpoint, "from")) and (max-width: map.get($secondBreakpoint, "to")) {
+                @content;
+            }
+        }
+    }
+}
